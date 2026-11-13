@@ -1,0 +1,27 @@
+---
+import Icon from "./Icon.astro";
+import { contacts } from "../data/site";
+---
+<div class="sticky-bar" data-rec="R-008">
+  <a class="btn btn--primary sticky-bar__call" href={contacts.phoneHref}>
+    <Icon name="phone" size={20} />
+    <span class="nowrap"><span class="sticky-bar__verb">Подзвонити </span>{contacts.phoneText}</span>
+  </a>
+  <a class="sticky-bar__mail" href={`mailto:${contacts.email}`} aria-label={`Написати на ${contacts.email}`}>
+    <Icon name="mail" size={22} />
+  </a>
+</div>
+
+<script>
+  // Motion 4: the bar slides in once the first screen has scrolled away (mobile only via CSS).
+  const bar = document.querySelector<HTMLElement>(".sticky-bar");
+  const hero = document.getElementById("top");
+  if (bar && hero && "IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => {
+      const passed = !e.isIntersecting && e.boundingClientRect.top < 0;
+      bar.classList.toggle("is-shown", passed);
+    }).observe(hero);
+  } else if (bar) {
+    bar.classList.add("is-shown");
+  }
+</script>

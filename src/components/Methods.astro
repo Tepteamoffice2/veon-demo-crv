@@ -1,0 +1,38 @@
+---
+import { Picture } from "astro:assets";
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import trxPhoto from "../assets/img/trx-session.webp";
+import { methods, future } from "../data/site";
+---
+<Section id="metody" class="section section--bg methods">
+  <div class="methods__grid">
+    <figure class="methods__figure" data-reveal="photo">
+      <Picture
+        src={trxPhoto}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        widths={[390, 574]}
+        sizes="(min-width: 1024px) 574px, 100vw"
+        alt="Фізичний терапевт центру проводить заняття з дівчиною на підвісній системі в залі"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="methods__caption">
+        Обладнання центру: система ударно-хвильової терапії STORZ MEDICAL, підвісна система Redcord Neurac, петлі TRX.
+      </figcaption>
+    </figure>
+    <div class="methods__content">
+      <h2 class="h2">Методи та обладнання</h2>
+      <ul class="methods__list">
+        {methods.map((m) => (
+          <li class="method">
+            <h3 class="method__title">{m.title}</h3>
+            <p class="method__text">{m.text}</p>
+            <FutureLink note={future}>Усі послуги напрямку</FutureLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Section>

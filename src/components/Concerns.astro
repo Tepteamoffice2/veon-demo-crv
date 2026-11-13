@@ -1,0 +1,44 @@
+---
+import { Picture } from "astro:assets";
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import kidsPhoto from "../assets/img/team-children.webp";
+import { groups, contacts, future } from "../data/site";
+
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+---
+<Section id="shcho-turbuie" class="section section--bg concerns" rec="R-003">
+  <div class="container concerns__grid">
+    <div class="concerns__aside">
+      <h2 class="h2">Що вас турбує</h2>
+      <p class="concerns__help">Не знайшли свій випадок? Зателефонуйте — підкажемо, з чого почати.</p>
+      <a class="concerns__phone" href={contacts.phoneHref}>{contacts.phoneText}</a>
+    </div>
+    <div class="concerns__groups">
+      {groups.map((g) => (
+        <article class:list={["group", `group--${g.weight}`, { "group--kids": g.id === "dity" }]} id={g.id} aria-labelledby={`${g.id}-title`}>
+          {g.id === "dity" && (
+            <figure class="group__photo" data-reveal="photo">
+              <Picture
+                src={kidsPhoto}
+                formats={["avif", "webp"]}
+        fallbackFormat="webp"
+                widths={[390, 613]}
+                sizes="(min-width: 1024px) 560px, 100vw"
+                alt="Двоє фізичних терапевтів центру з дівчинкою і хлопчиком на фітболах біля синьої стіни з назвою центру"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          )}
+          <div class="group__body">
+            <span class="group__bar" aria-hidden="true"></span>
+            <h3 class="group__title" id={`${g.id}-title`}>{g.title}</h3>
+            <p class="group__list">{cap(g.conditions.join(", "))}.</p>
+            <FutureLink note={future} class="group__more">Детальніше<span class="visually-hidden"> про напрямок {g.title}</span></FutureLink>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Section>

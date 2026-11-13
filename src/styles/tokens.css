@@ -1,0 +1,97 @@
+/* Hallmark · shape: patient-index (custom) · genre: editorial · theme: custom · job: book · idea: "Зміст сторінки — це тіло пацієнта" · vibe: "спокійно, твердо, по-людськи, синя зала"
+ * paper: #F4F6FA · accent: #FF9B6A (на полі #0A47AA) · display: Geologica · body: Golos Text · hero: синє поле, H1 і дзвінок ліворуч, покажчик «що болить» праворуч · nav: одна строка, якорі + номер-кнопка · footer: світлий, лого + розділи + контакти · imagery: client photos (2) · signature: покажчик тіла, що веде у групу з відміткою «ви тут»
+ * surface: absolute · axes: light/geometric-sans/chromatic-blue · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: imagery, only two small client photos, so type and colour fields carry the page and photos stay at native size */
+/* Hallmark · waive 7b · surface #FFFFFF is a named colour of the approved concept (veon-concept colors) · white header, step-one panel and contacts block sit on the cool porcelain ground #F4F6FA like the white walls of the client's gym */
+/* Hallmark · waive 39b · the call button carries the phone number as a second line, so it stands 64 to 72px · a patient reads the number 098 118 10 10 inside the button before calling */
+/* Note: blue is the client's own identity (logo, the gym wall, the fitballs, C-008), not a category pick; client brand outranks the Hallmark rule (docs/process/hallmark.md, priority 1-2). */
+/* Client design tokens from design/concept.md (veon-concept: colors, fonts). */
+@font-face {
+  font-family: "Geologica Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../assets/fonts/geologica-cyrillic-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Geologica Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../assets/fonts/geologica-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Golos Text Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 900;
+  src: url("../assets/fonts/golos-text-cyrillic-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Golos Text Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 900;
+  src: url("../assets/fonts/golos-text-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* colour roles (concept 5.3) */
+  --color-bg: #F4F6FA;
+  --color-surface: #FFFFFF;
+  --color-text: #0D1A30;
+  --color-muted: #4A5670;
+  --color-primary: #0A47AA;
+  --color-primary-deep: #06317A;
+  --color-ice: #D6E3F8;
+  --color-accent: #FF9B6A;
+  --color-accent-hover: #FFAD85;
+  --color-accent-ink: #0D1A30;
+  --color-line: #C9D3E3;
+  --color-focus: #0A47AA;
+  --color-focus-on-field: #FFFFFF;
+
+  /* type (concept 5.4) */
+  --font-display: "Geologica Variable", "Geologica", system-ui, sans-serif;
+  --font-body: "Golos Text Variable", "Golos Text", system-ui, sans-serif;
+  --fs-small: 0.9375rem;                                   /* 15 */
+  --fs-body: 1.125rem;                                     /* 18 */
+  --fs-lead: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);      /* 18 → 22 */
+  --fs-h3: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);           /* 24 → 32 */
+  --fs-index: clamp(1.625rem, 0.9rem + 1.1vw, 2rem);         /* 26 (mobile) → 32 */
+  --fs-h2: clamp(2rem, 1.5rem + 1.8vw, 3rem);              /* 32 → 48 */
+  --fs-figure: clamp(2.5rem, 1.6rem + 3vw, 4rem);          /* 40 → 64 */
+  --fs-h1: clamp(2.5rem, 1.35rem + 4.6vw, 5.25rem);        /* 40 → 84 */
+  --lh-h1: 1.04;
+  --lh-h2: 1.1;
+  --lh-body: 1.55;
+
+  /* space, grid (concept 5.5) */
+  --s-1: 0.5rem;   /* 8 */
+  --s-2: 1rem;     /* 16 */
+  --s-3: 1.5rem;   /* 24 */
+  --s-4: 2rem;     /* 32 */
+  --s-5: 3rem;     /* 48 */
+  --s-6: 4.5rem;   /* 72 */
+  --s-7: 7rem;     /* 112 */
+  --section-y: clamp(4.5rem, 2.9rem + 5.4vw, 7rem);
+  --space: clamp(1.25rem, 5vw, 4rem);
+  --gap: 1.5rem;
+  --container: 1240px;
+  --header-h: 72px;
+  --bar-h: 64px;
+  --radius: 8px;
+  --tap: 44px;
+
+  /* motion (concept 5.8) */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 600ms;
+  --dur-fast: 220ms;
+}
+@media (min-width: 1024px) {
+  :root { --header-h: 84px; }
+}

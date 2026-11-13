@@ -1,0 +1,38 @@
+---
+import Section from "./Section.astro";
+import { faq } from "../data/site";
+---
+<Section id="pytannia" class="section section--bg faq">
+  <div class="container faq__grid">
+    <h2 class="h2 faq__title">Питання</h2>
+    <div class="faq__list">
+      {faq.map((item, i) => (
+        <div class="faq__item">
+          <h3 class="faq__q">
+            <button type="button" class="faq__btn" aria-expanded="true" aria-controls={`faq-a-${i}`} id={`faq-q-${i}`}>
+              <span>{item.q}</span>
+              <span class="faq__sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__a" id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`}>
+            <p>{item.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>
+
+<script>
+  // Without JS every answer stays open; with JS they start closed and open instantly (Floor 2: no height animation).
+  document.querySelectorAll<HTMLButtonElement>(".faq__btn").forEach((btn, i) => {
+    const panel = document.getElementById(btn.getAttribute("aria-controls") ?? "");
+    if (!panel) return;
+    const set = (open: boolean) => {
+      btn.setAttribute("aria-expanded", String(open));
+      panel.hidden = !open;
+    };
+    set(i === 0);
+    btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+  });
+</script>

@@ -1,0 +1,41 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { prices, contacts, cta, future } from "../data/site";
+
+const tables = [
+  { title: "Консультації і заняття", rows: prices.consult },
+  { title: "Процедури", rows: prices.procedures },
+];
+---
+<Section id="tsiny" class="section field field--deep prices" rec="R-006">
+  <div class="container">
+    <h2 class="h2">Ціни</h2>
+    <div class="prices__tables">
+      {tables.map((t) => (
+        <table class="price-table">
+          <caption class="price-table__caption">{t.title}</caption>
+          <tbody>
+            {t.rows.map((r) => (
+              <tr>
+                <th scope="row">{r.name}</th>
+                <td>{r.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ))}
+    </div>
+    <div class="prices__foot">
+      <p class="prices__note">Курс лікування — індивідуально, після консультації. Актуальні ціни уточнюйте за телефоном.</p>
+      <div class="prices__actions">
+        <a class="btn btn--accent" href={contacts.phoneHref}>
+          <Icon name="phone" size={20} />
+          <span class="btn__stack"><span>{cta}</span><span class="btn__sub">{contacts.phoneText}</span></span>
+        </a>
+        <FutureLink note={future}>Повний прайс</FutureLink>
+      </div>
+    </div>
+  </div>
+</Section>

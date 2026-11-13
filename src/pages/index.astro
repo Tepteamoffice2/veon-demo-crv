@@ -1,0 +1,65 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Concerns from "../components/Concerns.astro";
+import Start from "../components/Start.astro";
+import Methods from "../components/Methods.astro";
+import Prices from "../components/Prices.astro";
+import Faq from "../components/Faq.astro";
+import Contacts from "../components/Contacts.astro";
+import Footer from "../components/Footer.astro";
+import StickyBar from "../components/StickyBar.astro";
+import { contacts, faq, methods } from "../data/site";
+
+const title = "Реабілітація в Тернополі — Центр Реабілітації та Відновлення";
+const description =
+  "Реабілітація спини й суглобів після травм і операцій для дорослих і дітей у Тернополі. Консультація ортопеда-травматолога — 600 грн. Запис: 098 118 10 10.";
+
+// concept 5.7: MedicalClinic + FAQPage; no aggregateRating (third-party source), no sameAs.
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    name: "Центр Реабілітації та Відновлення",
+    telephone: contacts.phoneFull.replace(/\s/g, ""),
+    email: contacts.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "вул. Соломії Крушельницької, 1",
+      addressLocality: "Тернопіль",
+      addressCountry: "UA",
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:00",
+      closes: "19:00",
+    },
+    medicalSpecialty: ["PhysicalTherapy", "Musculoskeletal"],
+    availableService: methods.map((m) => ({ "@type": "MedicalTherapy", name: m.title })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+<Base lang="uk" title={title} description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Header slot="header" />
+  <Hero />
+  <Concerns />
+  <Start />
+  <Methods />
+  <Prices />
+  <Faq />
+  <Contacts />
+  <Footer slot="footer" />
+  <StickyBar slot="footer" />
+</Base>

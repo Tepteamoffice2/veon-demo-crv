@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/img/logo.png";
+import FutureLink from "./FutureLink.astro";
+import { nav, contacts, future } from "../data/site";
+
+const futurePages = ["Що ми лікуємо", "Послуги", "Консультації", "Ціни", "Про центр", "Політика конфіденційності"];
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="site-footer__logo" href="#top">
+        <Image src={logo} alt="Центр Реабілітації та Відновлення — на початок сторінки" width={138} height={80} densities={[1, 2]} loading="lazy" />
+      </a>
+      <p class="muted">Реабілітація у травматології та ортопедії для дорослих і дітей.</p>
+    </div>
+    <nav class="site-footer__col" aria-label="Розділи сторінки (футер)">
+      <p class="site-footer__h">На сторінці</p>
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="site-footer__col">
+      <p class="site-footer__h">Розділи сайту</p>
+      <ul>
+        {futurePages.map((p) => <li><FutureLink note={future}>{p}</FutureLink></li>)}
+      </ul>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__h">Контакти</p>
+      <ul>
+        <li><a href={contacts.phoneHref}>{contacts.phoneFull}</a></li>
+        <li><a class="site-footer__mail" href={`mailto:${contacts.email}`}>{contacts.email}</a></li>
+        <li>{contacts.address}</li>
+        <li>{contacts.hours}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__base">
+    <p class="muted">© 2026 Центр Реабілітації та Відновлення, Тернопіль</p>
+  </div>
+</footer>

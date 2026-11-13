@@ -1,0 +1,37 @@
+---
+import Section from "./Section.astro";
+import Icon from "./Icon.astro";
+import { contacts, cta, groups } from "../data/site";
+---
+<Section id="top" class="hero field" rec="R-001,R-003">
+  <div class="container hero__grid">
+    <div class="hero__main">
+      <h1 class="hero__title">Реабілітація спини й суглобів <span class="nowrap">у Тернополі</span></h1>
+      <p class="hero__lead">Після травм і операцій, для дорослих і дітей — з лікарем ортопедом-травматологом.</p>
+      <a class="btn btn--accent btn--hero" href={contacts.phoneHref} data-rec="R-001,M-R003">
+        <Icon name="phone" size={22} />
+        <span class="btn__stack">
+          <span>{cta}</span>
+          <span class="btn__sub">{contacts.phoneText}</span>
+        </span>
+      </a>
+      <p class="hero__rating" data-rec="R-001">
+        <strong>4,9 з 5</strong> — {contacts.rating.count} відгуків на {contacts.rating.source}
+      </p>
+      <p class="hero__where">
+        <span>{contacts.address}</span>
+        <span>{contacts.hours}</span>
+      </p>
+    </div>
+    <nav class="pointer" aria-labelledby="pointer-title" data-rec="R-003" data-reveal="pointer">
+      <p class="pointer__title" id="pointer-title">Що вас турбує?</p>
+      <ul class="pointer__list">
+        {groups.map((g, i) => (
+          <li style={`--i:${i}`}>
+            <a class="pointer__link" href={`#${g.id}`}><span class="pointer__text">{g.index}</span></a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</Section>

@@ -1,0 +1,36 @@
+---
+import Section from "./Section.astro";
+import Icon from "./Icon.astro";
+import { steps, contacts, cta } from "../data/site";
+---
+<Section id="yak-pochaty" class="section section--surface start" rec="R-006">
+  <div class="container">
+    <h2 class="h2 start__title">З чого почати</h2>
+    <ol class="start__steps">
+      <li class="step step--first">
+        <span class="step__num" aria-hidden="true">1</span>
+        <div class="step__body">
+          <h3 class="step__title">Консультація лікаря ортопеда-травматолога</h3>
+          <p class="step__price" data-rec="R-006"><span class="step__figure">600 грн</span></p>
+          <p class="step__meta">До 30 хвилин. Повторний огляд — 400 грн.</p>
+        </div>
+      </li>
+      {steps.map((s, i) => (
+        <li class="step">
+          <span class="step__num" aria-hidden="true">{i + 2}</span>
+          <div class="step__body">
+            <h3 class="step__title">{s.title}</h3>
+            <p class="step__text">{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <div class="start__foot">
+      <p class="lead">Вартість курсу визначається індивідуально після консультації.</p>
+      <a class="btn btn--primary" href={contacts.phoneHref}>
+        <Icon name="phone" size={20} />
+        <span class="btn__stack"><span>{cta}</span><span class="btn__sub">{contacts.phoneText}</span></span>
+      </a>
+    </div>
+  </div>
+</Section>

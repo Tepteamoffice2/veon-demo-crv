@@ -1,0 +1,30 @@
+---
+import Section from "./Section.astro";
+import { contacts, cta } from "../data/site";
+---
+<Section id="kontakty" class="section section--surface contacts" rec="R-001,R-014">
+  <div class="container">
+    <h2 class="h2">Контакти і запис</h2>
+    <a class="contacts__call" href={contacts.phoneHref} data-rec="R-001">
+      <span class="contacts__call-label">{cta}</span>
+      <span class="contacts__number">{contacts.phoneText}</span>
+    </a>
+    <div class="contacts__facts">
+      <div class="contacts__fact">
+        <h3 class="contacts__h">Адреса</h3>
+        <p>{contacts.address}</p>
+        <a class="text-link contacts__link" href={contacts.mapHref} target="_blank" rel="noopener noreferrer" data-rec="R-014">Прокласти маршрут<span class="visually-hidden"> (карта відкриється в новій вкладці)</span></a>
+      </div>
+      <div class="contacts__fact">
+        <h3 class="contacts__h">Графік</h3>
+        <p>{contacts.hours}</p>
+        <p class="muted">Рейтинг 4,9 з 5 — {contacts.rating.count} відгуків на {contacts.rating.source}</p>
+      </div>
+      <div class="contacts__fact">
+        <h3 class="contacts__h">E-mail</h3>
+        <a class="text-link contacts__link contacts__mail" href={`mailto:${contacts.email}`}>{contacts.email}</a>
+        <p class="muted">Можна написати в неробочий час.</p>
+      </div>
+    </div>
+  </div>
+</Section>
